@@ -5,14 +5,12 @@ using UnityEngine;
 public class MyFloater : MonoBehaviour
 {
     private Rigidbody rigidbody;
-    public float floatUpSpeedLimit = 1.15f;
-    public float floatUpSpeed = 1f;
+    private float floatUpSpeedLimit = 1.15f;
+    private float floatUpSpeed = 1f;
  
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        floatUpSpeedLimit = 1f;
-        floatUpSpeed = 0.5f;
     }
     private void OnTriggerStay(Collider other)
     {
