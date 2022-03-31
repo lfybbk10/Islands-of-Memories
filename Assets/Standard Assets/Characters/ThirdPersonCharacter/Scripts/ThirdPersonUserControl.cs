@@ -53,11 +53,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_Move = v*Vector3.forward + h*Vector3.right;
             }
-
-            bool roll = Input.GetKey(KeyCode.C);
-            if (Input.GetKey(KeyCode.LeftShift)) 
-                m_Move *= 1f;
-            m_Character.Move(m_Move, crouch, m_Jump, roll);
+            bool roll = Input.GetKey(KeyCode.LeftShift);
+            bool hit = Input.GetMouseButton(0);
+            m_Character.Move(m_Move, crouch, m_Jump, hit, roll);
             m_Jump = false;
         }
     }

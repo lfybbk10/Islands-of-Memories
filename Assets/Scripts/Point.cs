@@ -8,6 +8,7 @@ public class Point : MonoBehaviour
 {
     [SerializeField] private Color _color = Color.red;
     [SerializeField] private float GIZMO_RANGE = 0.25f;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = _color;

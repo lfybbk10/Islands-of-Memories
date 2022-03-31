@@ -7,20 +7,16 @@ public class Tree : MonoBehaviour
 
     public void Damage(float value)
     {
+      
         _heath -= value;
+        print(_heath);
         if (_heath < 0)
             Kill();
-        else Shake();
     }
-
-    private void Shake()
-    {
-        transform.DOShakePosition(0.2f,2f);
-        transform.DOShakeScale(0.2f,2f);
-    }
-
+    
     private void Kill()
     {
+        Destroy(gameObject);
         //TODO выпадение дров.
     }
 }

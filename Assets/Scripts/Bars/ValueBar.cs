@@ -16,8 +16,7 @@ public class ValueBar : MonoBehaviour, IBar
     {
         _slider.maxValue = value;
     }
-
-
+    
     public virtual void SetValue(float value)
     {
         _slider.value = value;
@@ -41,7 +40,7 @@ public class ValueBar : MonoBehaviour, IBar
     public virtual void UpdateTextValue()
     {
         if (_text != null)
-            _text.text = $"{(int) _slider.value}/{(int)_slider.maxValue}";
+            _text.text = $"{(int) _slider.value}/{(int) _slider.maxValue}";
     }
 }
 

@@ -17,7 +17,6 @@ public class Combat : MonoBehaviour
             var count = Physics.OverlapSphereNonAlloc(transform.position, 1f, _colliders, _trees);
             for (int i = 0; i < count; i++)
             {
-                print(count);
                 var tree = _colliders[i].GetComponent<Tree>();
                 tree.Damage(0.1f);
             }
