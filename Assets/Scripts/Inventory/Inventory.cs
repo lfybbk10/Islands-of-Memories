@@ -5,69 +5,63 @@ using Debug = UnityEngine.Debug;
 
 public class Inventory : IInventory
 {
-    public int Capacity { get; private set; }
-
-    //Проверяет полон ли инвентарь.
     public bool IsFull => _slots.All(x => x.IsFull);
-    public bool IsAllOccupied => _slots.All(x => !x.IsEmpty);
-    
-    //Лист слотов.
-    private List<IInventorySlot> _slots;
-    public event Action InventoryStateChanged;
+    public bool IsEmpty => _slots.All(x => x.IsEmpty);
 
-    //Констуктор класса, подается ёмкость инвентаря.
-    public Inventory(int capacity)
+    private List<IInventorySlot> _slots;
+
+    private Action _inventoryStateChanged;
+
+    public Inventory(int initial, Action inventoryChanged)
     {
-        this.Capacity = capacity;
-        _slots = new List<IInventorySlot>(capacity);
-        for (var i = 0; i < capacity; i++)
+        _inventoryStateChanged = inventoryChanged;
+        _slots = new List<IInventorySlot>();
+        for (var i = 0; i < initial; i++)
             _slots.Add(new InventorySlot());
     }
 
-    public void TryToAdd(IItem item)
+
+    public bool Contains(ItemType type, int amount) => CountByType(type) >= amount;
+
+    private int CountByType(ItemType type) => _slots.FindAll(x => x.Item.Info.Type == type).Count;
+
+
+    public void Add(IItem item)
     {
         //Если инвентарь полон. Нельзя ничего добавить, следовательно выходим.
         if (IsFull)
+            return;
+        if (IsEmpty)
         {
-            Debug.Log($"Cannot add item ({item.Info.ItemType}); amount ({item.State.Amount})");
+            AddItem(_slots[0], item);
             return;
         }
 
         //Сначала находим неполный слот, в котором лежит Item такого же типа, как подаваемый, если такого нет, то находим пустой слот.
-        var suitableSlot = _slots.Find(x => x.Item?.Info.Type == item.Info.Type && !x.IsFull) ??
-                           _slots.Find(x => x.IsEmpty);
-        if (suitableSlot != null)
-            AddItem(suitableSlot, item);
+        var suitable = _slots.Find(x => x.Item != null && x.Item.Equal(item) && !x.IsFull) ??
+                       _slots.Find(x => x.IsEmpty);
+        if (suitable != null)
+            AddItem(suitable, item);
     }
 
     private void AddItem(IInventorySlot slot, IItem item)
     {
         //Проверяет, влезает ли в ячейку количество предметов, которые мы хотим положить.
         var isFits = slot.Amount + item.State.Amount <= item.Info.MaxQuantity;
-
         var amountToAdd = isFits ? item.State.Amount : item.Info.MaxQuantity - slot.Amount;
         if (slot.IsEmpty)
-        {
-            var clonedItem = item.Clone(amountToAdd);
-            clonedItem.State.Amount = amountToAdd;
-            slot.Set(clonedItem);
-        }
-        else
-        {
-            slot.Item.State.Amount += amountToAdd;
-            OnInventoryStateChanged();
-        }
+            slot.Set(item.Clone(amountToAdd));
+        else slot.Item.State.Amount += amountToAdd;
         OnInventoryStateChanged();
         var amountLeft = item.State.Amount - amountToAdd;
-
         if (amountLeft > 0)
         {
             item.State.Amount = amountLeft;
-            TryToAdd(item);
+            Add(item);
         }
     }
 
-    public void RemoveFromSlot(Type type,IInventorySlot inventorySlot, int amount = 1)
+    public void RemoveFromSlot(Type type, IInventorySlot inventorySlot, int amount = 1)
     {
         if (amount > inventorySlot.Amount)
             throw new ArgumentException();
@@ -76,42 +70,34 @@ public class Inventory : IInventory
             inventorySlot.Clear();
         OnInventoryStateChanged();
     }
-    
-    public void Remove(Type type, int amount = 1)
+    public void Remove(ItemType type, int amount = 1)
     {
-        try
+        if (IsEmpty)
+            return;
+        var itemsSlots = _slots.FindAll(x => !x.IsEmpty && x.Item.Info.Type == type);
+        if (itemsSlots.Count != 0)
         {
-            var itemsSlots = _slots.FindAll(x => !x.IsEmpty && x.Item.Info.Type == type);
-            if (itemsSlots.Count != 0)
+            var count = itemsSlots.Count;
+            for (var i = count - 1; i >= 0; ++i)
             {
-                var count = itemsSlots.Count;
-                for (var i = count - 1; i >= 0; ++i)
+                var slot = itemsSlots[i];
+                if (slot.Amount >= amount)
                 {
-                    var slot = itemsSlots[i];
-                    if (slot.Amount >= amount)
-                    {
-                        slot.Item.State.Amount -= amount;
-                        if (slot.Amount <= 0)
-                            slot.Clear();
-                        OnInventoryStateChanged();
-                        return;
-                    }
-                    var amountLeft = amount - slot.Amount;
-                    slot.Clear();
+                    slot.Item.State.Amount -= amount;
+                    if (slot.Amount <= 0)
+                        slot.Clear();
                     OnInventoryStateChanged();
-                    Remove(type,amountLeft);
+                    return;
                 }
+                var amountLeft = amount - slot.Amount;
+                slot.Clear();
+                OnInventoryStateChanged();
+                Remove(type, amountLeft);
             }
         }
-        catch(Exception e)
-        {
-            Debug.Log(e.Message);
-        }
     }
-
-   
     
-
+    //Возможно можно сделать через Add
     //Выполняет тразит предметема с одного слота (from) в другой (to)
     public void Transit(IInventorySlot from, IInventorySlot to)
     {
@@ -135,14 +121,15 @@ public class Inventory : IInventory
             to.Set(from.Item);
             from.Clear();
             to.Item.State.Amount += amountToAdd;
-            OnInventoryStateChanged();
-            return;
         }
-        to.Item.State.Amount += amountToAdd;
-        if (isFits)
-            from.Clear();
         else
-            from.Item.State.Amount = amountLeft;
+        {
+            to.Item.State.Amount += amountToAdd;
+            if (isFits)
+                from.Clear();
+            else from.Item.State.Amount = amountLeft;
+        }
+
         OnInventoryStateChanged();
     }
 
@@ -151,7 +138,7 @@ public class Inventory : IInventory
         return _slots.Find(x => x.Item.Info.Name == name).Item;
     }
 
-    public IEnumerable<IInventorySlot> GetSlots()
+    public IReadOnlyList<IInventorySlot> GetSlots()
     {
         return _slots;
     }
@@ -162,24 +149,8 @@ public class Inventory : IInventory
             yield return slot.Item;
     }
 
-    public bool HasItem(IItemInfo itemInfo, int amount)
-    {
-        var b = GetItems()?.ToList().Where(x => x?.Info.Type == itemInfo.Type)
-            .Aggregate(0, (x, y) => x + y.State.Amount);
-        return b >= amount;
-    }
-
-    public bool HasItemByType(Type type)
-    {
-        var items = GetItems()?.ToList();
-        if (items.Count == 0)
-            return false;
-        return items.Count(x => x != null && x.Info.Type == type) != 0;
-    }
-    
-    
     private void OnInventoryStateChanged()
     {
-        InventoryStateChanged?.Invoke();
+        _inventoryStateChanged?.Invoke();
     }
 }

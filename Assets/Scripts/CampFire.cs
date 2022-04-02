@@ -56,28 +56,28 @@ public class CampFire : MonoBehaviour
             _particle.Stop();
     }
     
-    public void AddBranch()
-    {
-        if (_uiInventory.Inventory.HasItemByType(Type.Branch))
-        {
-            if (ableToAdd)
-            {
-                var branch = _branches[_branches.Length - _putsBranches.Count - 1];
-                branch.SetActive(true);
-                _putsBranches.Add(branch);
-                if (!_particle.isPaused)
-                    _particle.Play();
-            }
-            _uiInventory.Inventory.Remove(Type.Branch);
-            var children = GameObject.FindWithTag("MainCamera").gameObject.GetComponentsInChildren<Transform>();
-            if (children.Length != 0)
-            {
-                for (int i = 0; i < children.Length; i++)
-                {
-                    if (children[i] != GameObject.FindWithTag("MainCamera").transform)
-                        Destroy(children[i].gameObject);
-                }
-            }
-        }
-    }
+    // public void AddBranch()
+    // {
+    //     if (_uiInventory.Inventory.HasItemByType(Type.Branch))
+    //     {
+    //         if (ableToAdd)
+    //         {
+    //             var branch = _branches[_branches.Length - _putsBranches.Count - 1];
+    //             branch.SetActive(true);
+    //             _putsBranches.Add(branch);
+    //             if (!_particle.isPaused)
+    //                 _particle.Play();
+    //         }
+    //         _uiInventory.Inventory.Remove(Type.Branch);
+    //         var children = GameObject.FindWithTag("MainCamera").gameObject.GetComponentsInChildren<Transform>();
+    //         if (children.Length != 0)
+    //         {
+    //             for (int i = 0; i < children.Length; i++)
+    //             {
+    //                 if (children[i] != GameObject.FindWithTag("MainCamera").transform)
+    //                     Destroy(children[i].gameObject);
+    //             }
+    //         }
+    //     }
+    // }
 }

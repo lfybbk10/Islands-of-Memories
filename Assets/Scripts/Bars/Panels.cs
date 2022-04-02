@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Panels : MonoBehaviour
 {
-    [SerializeField] public ValueBar HealthBar;
-    [SerializeField] public ValueBar ThistBar;
-    [SerializeField] public ValueBar MealBar;
-    [SerializeField] public ValueBar EnergyBar;
+    [SerializeField] private ValueBar _healthBar;
+    [SerializeField] private ValueBar ThistBar;
+    [SerializeField] private ValueBar MealBar;
+    [SerializeField] private ValueBar EnergyBar;
 
     private void Awake()
     {
-        HealthBar.SetMaxValue(100.05f);
-        HealthBar.SetValue(50);
+        _healthBar.SetMaxValue(100.05f);
+        _healthBar.SetValue(50);
         ThistBar.SetMaxValue(100.05f); 
         ThistBar.SetValue(35);
         MealBar.SetMaxValue(100.05f);
@@ -40,7 +40,7 @@ public class Panels : MonoBehaviour
         
         if (ThistBar.IsEmpty || MealBar.IsEmpty)
         {
-            HealthBar.DecreaseValue(0.0008f);
+            _healthBar.DecreaseValue(0.0008f);
         }
     }
 }
