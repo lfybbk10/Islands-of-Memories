@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 489e1ac1e60776f49824982e05968d4f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Underdog
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ff04478c9bf13c146917253a32b31cdd, type: 3}
+  - {fileID: 12800000, guid: b2d090c1defeedc49b0b2586c21a9f7e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

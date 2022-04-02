@@ -8,7 +8,7 @@ namespace Buttons.SettingsMenu
         public void OnClick()
         {
             notimplemented.SetActive(true);
-            Invoke("DisableText",3.0f);
+            Invoke(nameof(DisableText),3.0f);
         }
 
         public void DisableText()
