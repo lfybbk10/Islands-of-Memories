@@ -7,12 +7,13 @@ using UnityEngine;
 public class UIInventory : MonoBehaviour
 {
     [SerializeField] private ItemInfo _info;
+    [SerializeField] private Dropper _dropper;
     [SerializeField] private UIInventorySlot[] _uiSlots;
-    private Action _inventoryChanged;
-    private Action<IInventorySlot, IInventorySlot> _transited;
     private Inventory _inventory;
     private IList<UIInventoryFastSlot> _fast;
     private UIInventoryFastSlot _selected;
+    private Action _inventoryChanged;
+    private Action<IInventorySlot, IInventorySlot> _transited;
 
     private void Awake()
     {
@@ -38,10 +39,28 @@ public class UIInventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             _inventory.Add(new Item(_info));
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (_selected != null)
+                _dropper.Drop(_inventory, _selected);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            for (var index = 0; index < _fast.Count; index++)
+            {
+                var slot = _fast[index];
+                print($"Слот #{index} Пустой? {slot.Slot.IsEmpty}");
+            }
+        }
+        
+        
+        
         for (int i = 1; i <= _fast.Count; i++)
         {
             if (Input.GetKeyDown(i.ToString())) //TODO поправить сделать черещ string.Format
@@ -53,6 +72,7 @@ public class UIInventory : MonoBehaviour
                     _selected = null;
                     return;
                 }
+
                 if (_selected != null)
                     _selected.ToggleSelect();
                 slot.ToggleSelect();

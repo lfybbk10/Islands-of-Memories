@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class Tree : MonoBehaviour
@@ -7,16 +8,14 @@ public class Tree : MonoBehaviour
 
     public void Damage(float value)
     {
-      
         _heath -= value;
-        print(_heath);
-        if (_heath < 0)
+        if (_heath + float.Epsilon < 0) 
             Kill();
     }
     
     private void Kill()
     {
-        Destroy(gameObject);
         //TODO выпадение дров.
+        Destroy(gameObject);
     }
 }

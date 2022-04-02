@@ -7,25 +7,25 @@ public class UIInventorySlot : MonoBehaviour, IDropHandler
 {
     [SerializeField] private UIInventoryItem _uiInventoryItem;
 
-    private IInventorySlot _slot { get; set; }
+    public IInventorySlot Slot { get; private set; }
     private Action<IInventorySlot, IInventorySlot> _transited;
     
     public void Set(IInventorySlot slot)
     {
-        _slot = slot;
+        Slot = slot;
     }
     
-    public void OnDrop(PointerEventData eventData)
+    public virtual void OnDrop(PointerEventData eventData)
     {
         var otherSlotUI = eventData.pointerDrag.GetComponentInParent<UIInventorySlot>();
-        var otherSlot = otherSlotUI._slot;
-        _transited.Invoke(otherSlot, _slot);
+        var otherSlot = otherSlotUI.Slot;
+        _transited.Invoke(otherSlot, Slot);
     }
 
     public void Render()
     {
-        if (_slot != null)
-            _uiInventoryItem.Render(_slot);
+        if (Slot != null)
+            _uiInventoryItem.Render(Slot);
     }
     
     public void Init(Action<IInventorySlot, IInventorySlot> transited)

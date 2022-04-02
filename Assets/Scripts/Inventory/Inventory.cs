@@ -61,14 +61,15 @@ public class Inventory : IInventory
         }
     }
 
-    public void RemoveFromSlot(Type type, IInventorySlot inventorySlot, int amount = 1)
+    public void RemoveFromSlot(IInventorySlot inventorySlot, int amount = 1)
     {
-        if (amount > inventorySlot.Amount)
-            throw new ArgumentException();
-        inventorySlot.Item.State.Amount -= amount;
-        if (inventorySlot.Amount <= 0)
-            inventorySlot.Clear();
-        OnInventoryStateChanged();
+        if (!inventorySlot.IsEmpty)
+        {
+            inventorySlot.Item.State.Amount -= amount;
+            if (inventorySlot.Amount <= 0)
+                inventorySlot.Clear();
+            OnInventoryStateChanged();
+        }
     }
     public void Remove(ItemType type, int amount = 1)
     {
