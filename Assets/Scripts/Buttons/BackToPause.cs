@@ -11,7 +11,6 @@ namespace Buttons
         {
             pauseMenu.SetActive(true);
             settingsMenu.SetActive(false);
-            
         }
     }
 }
