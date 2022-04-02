@@ -8,14 +8,7 @@ public class UIInventorySlot : MonoBehaviour, IDropHandler
     [SerializeField] private UIInventoryItem _uiInventoryItem;
 
     private IInventorySlot _slot { get; set; }
-    
-    private UIInventory _uiInventory;
     private Action<IInventorySlot, IInventorySlot> _transited;
-    
-    private void Awake()
-    {
-        _uiInventory = GetComponentInParent<UIInventory>();
-    }
     
     public void Set(IInventorySlot slot)
     {
