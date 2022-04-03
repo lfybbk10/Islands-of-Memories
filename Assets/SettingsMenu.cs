@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private Button _main;
-    [SerializeField] private Button _graphics;
     [SerializeField] private Button _controls;
     [SerializeField] private Button _back;
     [SerializeField] private Top top;
@@ -14,7 +13,6 @@ public class SettingsMenu : MonoBehaviour
     private void Awake()
     {
         _main.onClick.AddListener(NotImplemented);
-        _graphics.onClick.AddListener(NotImplemented);
         _controls.onClick.AddListener(NotImplemented);
         _back.onClick.AddListener(() =>
         {

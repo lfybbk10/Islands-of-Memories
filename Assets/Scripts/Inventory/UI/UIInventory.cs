@@ -13,6 +13,7 @@ public class UIInventory : MonoBehaviour
     [SerializeField] private Dropper _dropper;
     [SerializeField] private UIInventorySlot[] _uiSlots;
     [SerializeField] private Equiper _equiper;
+    [SerializeField] private UIInventorySlot _slot;
     private Inventory _inventory;
     private IList<UIInventoryFastSlot> _fast;
     private UIInventoryFastSlot _selected;
@@ -103,5 +104,6 @@ public class UIInventory : MonoBehaviour
             uiSlot.Set(slot);
             uiSlot.Render();
         }
+        _inventory.AddItem(_slot.Slot, new Item(_info,25));
     }
 }

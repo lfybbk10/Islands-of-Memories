@@ -33,7 +33,7 @@ public class Inventory : IInventory
     {
        return _slots.Where(x => !x.IsEmpty && x.Item.Info.Type == type).Select(x => x.Amount).Sum();
     }
-
+    
     public void Add(IItem item)
     {
         //Если инвентарь полон. Нельзя ничего добавить, следовательно выходим.
@@ -52,7 +52,7 @@ public class Inventory : IInventory
             AddItem(suitable, item);
     }
 
-    private void AddItem(IInventorySlot slot, IItem item)
+    public void AddItem(IInventorySlot slot, IItem item)
     {
         //Проверяет, влезает ли в ячейку количество предметов, которые мы хотим положить.
         var isFits = slot.Amount + item.State.Amount <= item.Info.MaxQuantity;
