@@ -8,5 +8,5 @@
          Sprite Icon { get; }
          ItemType Type { get; }
          int MaxQuantity { get; }
-         GameObject Prefab { get; }
+         Throw Throw { get; }
     }

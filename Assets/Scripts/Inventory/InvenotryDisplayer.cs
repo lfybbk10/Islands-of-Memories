@@ -18,8 +18,10 @@ public class InvenotryDisplayer : MonoBehaviour
     {
         _closeButton.onClick.AddListener(() =>
         {
-            _inventory.transform.DOLocalMove(new Vector3(0, 1080, 0), _duration);
-            _inventory.SetActive(false);
+            _inventory.transform.DOLocalMove(new Vector3(0, 1080, 0), _duration).OnComplete(() =>
+            {
+                _inventory.SetActive(false);
+            });
             Game.IsPaused = false;
         });
     }

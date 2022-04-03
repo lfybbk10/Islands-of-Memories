@@ -10,10 +10,10 @@ public class ItemInfo : ScriptableObject, IItemInfo
     [SerializeField] protected Sprite _icon;
     [SerializeField] protected int _maxQuantity;
     [SerializeField] protected ItemType _type;
-    [SerializeField] protected GameObject _prefab;
+    [SerializeField] protected Throw _throw;
     public string Name => _name;
     public Sprite Icon => _icon;
     public ItemType Type => _type;
     public int MaxQuantity => _maxQuantity;
-    public GameObject Prefab => _prefab;
+    public Throw Throw => _throw;
 }
