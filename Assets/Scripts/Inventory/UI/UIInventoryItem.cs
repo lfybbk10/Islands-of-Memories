@@ -26,6 +26,6 @@ public class UIInventoryItem : UIItem
         var isAmountSuit = slot.Amount > 1;
         _amountText.gameObject.SetActive(isAmountSuit);
         if (isAmountSuit)
-            _amountText.text = $"{slot.Amount}";
+            _amountText.text = $"x{slot.Amount}";
     }
 }

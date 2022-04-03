@@ -23,8 +23,11 @@ public class Inventory : IInventory
 
     public bool Contains(ItemType type, int amount) => CountByType(type) >= amount;
 
-    private int CountByType(ItemType type) => _slots.FindAll(x => x.Item.Info.Type == type).Count;
-
+    private int CountByType(ItemType type)
+    {
+        Debug.Log(type);
+        return _slots.FindAll(x => !x.IsEmpty && x.Item.Info.Type == type).Count;
+    }
 
     public void Add(IItem item)
     {

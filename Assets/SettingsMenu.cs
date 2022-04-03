@@ -8,7 +8,7 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Button _graphics;
     [SerializeField] private Button _controls;
     [SerializeField] private Button _back;
-    [SerializeField] private Menu _menu;
+    [SerializeField] private Top top;
     [SerializeField] private GameObject _notimplemented;
 
     private void Awake()
@@ -19,7 +19,7 @@ public class SettingsMenu : MonoBehaviour
         _back.onClick.AddListener(() =>
         {
             gameObject.SetActive(false);
-            _menu.gameObject.SetActive(true);
+            top.gameObject.SetActive(true);
         });
     }
 

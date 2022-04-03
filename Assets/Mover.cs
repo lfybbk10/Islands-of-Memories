@@ -7,27 +7,21 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private GameObject _menu;
     [SerializeField] private float _duration;
 
-    private void Update()
+    public void Move(GameObject menu)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (menu.activeSelf)
         {
-            if (_menu.activeSelf)
-            {
-                _menu.transform.DOLocalMove(new Vector3(0, 1080, 0), _duration).OnComplete(() =>
-                {
-                    _menu.SetActive(false);
-                });
-                Game.IsPaused = false;
-            }
-            else
-            {
-                _menu.SetActive(true);
-                _menu.transform.DOLocalMove(new Vector3(0, 0, 0), _duration);
-                Game.IsPaused = true;
-            }
-        }   
+            menu.transform.DOLocalMove(new Vector3(0, 1080, 0), _duration)
+                .OnComplete(() => { menu.SetActive(false); });
+            Game.IsPaused = false;
+        }
+        else
+        {
+            menu.SetActive(true);
+            menu.transform.DOLocalMove(new Vector3(0, 0, 0), _duration);
+            Game.IsPaused = true;
+        }
     }
 }

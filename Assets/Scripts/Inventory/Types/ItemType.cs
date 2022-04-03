@@ -9,4 +9,5 @@ public enum ItemType
     Fibres,
     Coconut,
     Twigs,
+    Wood,
 }
