@@ -9,6 +9,7 @@ public class Tree : MonoBehaviour
     public void Damage(float value)
     {
         _heath -= value;
+        
         if (_heath + float.Epsilon < 0) 
             Kill();
     }
