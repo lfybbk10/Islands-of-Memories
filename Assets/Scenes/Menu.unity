@@ -503,7 +503,7 @@ Animator:
   m_GameObject: {fileID: 3067957063865234515}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3ce873cd30c20f64dbda313c8f57785f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 1616694423}
     m_SelectOnDown: {fileID: 2479538903678827349}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -960,7 +960,7 @@ Animator:
   m_GameObject: {fileID: 754368777}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ce8515aa1dbef349b31ec7934c12761, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -984,8 +984,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1400692570}
+    m_SelectOnDown: {fileID: 1218201615}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 3
@@ -1083,7 +1083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &768120230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1504,7 +1504,7 @@ Animator:
   m_GameObject: {fileID: 3067957064146637130}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3ce873cd30c20f64dbda313c8f57785f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1563,7 +1563,7 @@ Animator:
   m_GameObject: {fileID: 1192114531}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ce8515aa1dbef349b31ec7934c12761, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1587,8 +1587,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1218201615}
+    m_SelectOnDown: {fileID: 1400692570}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 3
@@ -1735,7 +1735,7 @@ Animator:
   m_GameObject: {fileID: 1218201612}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ce8515aa1dbef349b31ec7934c12761, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1759,8 +1759,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 754368780}
+    m_SelectOnDown: {fileID: 1192114534}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 3
@@ -1888,7 +1888,7 @@ Animator:
   m_GameObject: {fileID: 1400692567}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ce8515aa1dbef349b31ec7934c12761, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1912,8 +1912,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1192114534}
+    m_SelectOnDown: {fileID: 754368780}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 3
@@ -2255,7 +2255,7 @@ Animator:
   m_GameObject: {fileID: 1616694420}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9ce8515aa1dbef349b31ec7934c12761, type: 2}
+  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2280,7 +2280,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 2479538903678827349}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 673709779}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 3
@@ -2368,7 +2368,7 @@ Animator:
   m_GameObject: {fileID: 3067957064289088113}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3ce873cd30c20f64dbda313c8f57785f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2397,7 +2397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1748859701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2515,7 +2515,7 @@ Animator:
   m_GameObject: {fileID: 3067957063742817487}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8d0e05105d07a24396f2b010e12e613, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3ce873cd30c20f64dbda313c8f57785f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3157,8 +3157,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 673709779}
+    m_SelectOnDown: {fileID: 1616694423}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 3
