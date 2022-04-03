@@ -18,7 +18,6 @@ namespace Craft
             }
             else print($"Невозможно создать: {recipe.Received.Info.Name}");
         }
-
         private bool IsAllowed(IEnumerable<Component> requirements)
         {
             if (_inventory.IsEmpty)

@@ -15,7 +15,6 @@ public class Throw : MonoBehaviour, IThrowable
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<BoxCollider>();
     }
-    
     public Rigidbody Rigidbody => _rigidbody;
     public BoxCollider BoxCollider => _collider;
     public GameObject Object => gameObject;

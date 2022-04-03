@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Craft;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,12 +16,12 @@ public class UIInventory : MonoBehaviour
     private Inventory _inventory;
     private IList<UIInventoryFastSlot> _fast;
     private UIInventoryFastSlot _selected;
-    private Action _inventoryChanged;
+    public static Action InventoryChanged;
     private Action<IInventorySlot, IInventorySlot> _transited;
 
     private void Awake()
     {
-        _inventoryChanged += OnInventoryChanged;
+        InventoryChanged += OnInventoryChanged;
         _fast = GetComponentsInChildren<UIInventoryFastSlot>();
         _transited += OnTransited;
         Setup();
@@ -92,7 +93,7 @@ public class UIInventory : MonoBehaviour
 
     private void Setup()
     {
-        _inventory = new Inventory(_uiSlots.Length, _inventoryChanged);
+        _inventory = new Inventory(_uiSlots.Length, InventoryChanged);
         var allSlots = _inventory.GetSlots();
         for (int i = 0; i < _uiSlots.Length; ++i)
         {

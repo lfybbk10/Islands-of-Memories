@@ -11,6 +11,11 @@ public class Inventory : IInventory
     private List<IInventorySlot> _slots;
 
     private Action _inventoryStateChanged;
+    public Action InventoryChanged
+    {
+        get => _inventoryStateChanged;
+        set => _inventoryStateChanged = value;
+    }
 
     public Inventory(int initial, Action inventoryChanged)
     {
@@ -21,12 +26,12 @@ public class Inventory : IInventory
     }
 
 
-    public bool Contains(ItemType type, int amount) => CountByType(type) >= amount;
+    public bool Contains(ItemType type, int amount) => 
+        GetCount(type) >= amount;
 
-    private int CountByType(ItemType type)
+    public int GetCount(ItemType type)
     {
-        Debug.Log(type);
-        return _slots.FindAll(x => !x.IsEmpty && x.Item.Info.Type == type).Count;
+       return _slots.Where(x => !x.IsEmpty && x.Item.Info.Type == type).Select(x => x.Amount).Sum();
     }
 
     public void Add(IItem item)
@@ -74,6 +79,7 @@ public class Inventory : IInventory
             OnInventoryStateChanged();
         }
     }
+
     public void Remove(ItemType type, int amount = 1)
     {
         if (IsEmpty)
@@ -81,26 +87,27 @@ public class Inventory : IInventory
         var itemsSlots = _slots.FindAll(x => !x.IsEmpty && x.Item.Info.Type == type);
         if (itemsSlots.Count != 0)
         {
-            var count = itemsSlots.Count;
-            for (var i = count - 1; i >= 0; ++i)
+            for (var i = itemsSlots.Count - 1; i >= 0; --i)
             {
                 var slot = itemsSlots[i];
                 if (slot.Amount >= amount)
                 {
                     slot.Item.State.Amount -= amount;
-                    if (slot.Amount <= 0)
+                    if (slot.Amount == 0)
                         slot.Clear();
                     OnInventoryStateChanged();
                     return;
                 }
+
                 var amountLeft = amount - slot.Amount;
                 slot.Clear();
-                OnInventoryStateChanged();
+                UIInventory.InventoryChanged?.Invoke();
                 Remove(type, amountLeft);
+                return;
             }
         }
     }
-    
+
     //Возможно можно сделать через Add
     //Выполняет тразит предметема с одного слота (from) в другой (to)
     public void Transit(IInventorySlot from, IInventorySlot to)

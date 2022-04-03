@@ -11,7 +11,6 @@ namespace Craft
         private Action<IRecipe> _slotClicked;
         private Action _crafted;
         private IRecipe _recipe;
-
         private void Awake()
         {
             _slotClicked += OnSlotClicked;
@@ -20,7 +19,7 @@ namespace Craft
             foreach (var slot in _slots)
                 slot.Init(_slotClicked);
         }
-
+        
         private void OnCrafted() => _craftHandler.Craft(_recipe);
 
         private void OnSlotClicked(IRecipe recipe)
@@ -28,5 +27,6 @@ namespace Craft
             _recipe = recipe;
             _craftMenu.Replace(recipe);
         }
+        
     }
 }

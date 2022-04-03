@@ -18,7 +18,6 @@ namespace Craft
             _image.sprite = _recipe.Received.Info.Icon;
             _text.text = $"x{_recipe.Received.Amount}";
         }
-
         public void Init(Action<IRecipe> clicked)
         {
             _clicked = clicked;
