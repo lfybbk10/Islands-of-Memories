@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149162a794fc4106ba4525c1e357cfc1, type: 3}
+  m_Name: Fibres
+  m_EditorClassIdentifier: 
+  _received:
+    Info: {fileID: 11400000, guid: f79a2441527371b499fec03152696a69, type: 2}
+    Amount: 3
+  _requirements:
+  - Info: {fileID: 11400000, guid: 5b6701c24acd5c041ad1f995b24fa422, type: 2}
+    Amount: 1

@@ -2,10 +2,11 @@
 public enum ItemType
 {
     None,
+    Leaf,
     Rope,
     Stone,
     Axe,
-    Fibre,
+    Fibres,
     Coconut,
-    Branch,
+    Twigs,
 }
