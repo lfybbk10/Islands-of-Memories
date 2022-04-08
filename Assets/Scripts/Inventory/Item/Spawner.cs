@@ -12,13 +12,15 @@ public class Spawner : MonoBehaviour
         spawned.transform.DOScale(scale, 0.15f);
         return spawned;
     }
-    
+
     public Throw Spawn(IItem item, Vector3 position, Transform parent)
     {
-        var spawned = Instantiate(item.Info.Throw,parent);
+        var spawned = Instantiate(item.Info.Throw, parent);
         var scale = spawned.transform.localScale;
         spawned.transform.localScale = new Vector3(0, 0, 0);
         spawned.transform.position = position;
+        if (item.Info.Type == ItemType.Wood)
+            scale /= 4f;
         spawned.transform.DOScale(scale, 0.15f);
         return spawned;
     }

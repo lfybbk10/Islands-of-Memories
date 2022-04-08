@@ -11,6 +11,8 @@ public class Equiper : MonoBehaviour
     public void Deprive(bool fictive)
     {
         IsEquip = false;
+        if (_current.ItemInfo.Type == ItemType.Wood)
+            _current.gameObject.transform.DOScale(new Vector3(2, 2, 2), 0.15f);
         _current.Rigidbody.isKinematic = false;
         _current.BoxCollider.enabled = true;
         _current.transform.SetParent(null);

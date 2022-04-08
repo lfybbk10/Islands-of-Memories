@@ -682,14 +682,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 768120229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 904945ce2d874e1c8a610facd48cc4db, type: 3}
+  m_Script: {fileID: 11500000, guid: 4de7990a6f2327f4ba5a19e6aa289faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _main: {fileID: 1192114534}
-  _controls: {fileID: 754368780}
-  _back: {fileID: 1218201615}
-  top: {fileID: 0}
-  _notimplemented: {fileID: 0}
+  _new: {fileID: 1192114534}
+  _setting: {fileID: 754368780}
+  _quit: {fileID: 1218201615}
 --- !u!222 &768120232
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1171,9 +1169,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5bfb082ebe314b240b446481ce12c996, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 94b44a0bebbba134f9549aff28650bea, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.06
   m_Pitch: 1
   Loop: 0
   Mute: 0

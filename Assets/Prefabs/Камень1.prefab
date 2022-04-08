@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4071275295583519322}
   - component: {fileID: 9196420006279606999}
-  - component: {fileID: 671986834585289706}
   - component: {fileID: 4425223612464009616}
-  m_Layer: 0
+  - component: {fileID: 7445427327468073500}
+  m_Layer: 8
   m_Name: "\u041A\u0430\u043C\u0435\u043D\u044C1"
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3732292096110106848}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 4.09, z: -9.281}
-  m_LocalScale: {x: 0.05, y: 0.16, z: -0.16}
+  m_LocalScale: {x: -0.13, y: 0.16, z: -0.16}
   m_Children:
   - {fileID: 3526361926703084290}
   m_Father: {fileID: 0}
@@ -45,21 +45,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &671986834585289706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3732292096110106848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3b3252ac9e849bdab032c7be4b65a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemInfo: {fileID: 11400000, guid: 166c2a9f3ed49ea469325669cc21acb2, type: 2}
+  m_Size: {x: 2.4055648, y: 2.3636763, z: 3.0350924}
+  m_Center: {x: 0.28767678, y: 0.6818382, z: -0.50685406}
 --- !u!54 &4425223612464009616
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76,6 +63,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7445427327468073500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732292096110106848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea06e623014e29549b3d64615998e8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _info: {fileID: 11400000, guid: 166c2a9f3ed49ea469325669cc21acb2, type: 2}
 --- !u!1 &5640204393434800185
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 3526361926703084290}
   - component: {fileID: 1740368720938355272}
   - component: {fileID: 2955120020374974172}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

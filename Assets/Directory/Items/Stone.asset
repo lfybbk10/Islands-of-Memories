@@ -16,4 +16,4 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 651e9f9379ecb574fb2de7292081476f, type: 3}
   _maxQuantity: 10
   _type: 3
-  _throw: {fileID: 0}
+  _throw: {fileID: 7445427327468073500, guid: 9d308ac29f454504688df1430d541587, type: 3}
