@@ -64,10 +64,6 @@
 
 ![Craft](https://user-images.githubusercontent.com/76452124/163602752-f1012596-64d7-478e-a78c-a569514a134a.gif)
 
-**Розжиг костра**
-
-![CampFire (1)](https://user-images.githubusercontent.com/76452124/163603609-ed9d41ca-35c2-4a71-9d57-7d18e9d2d63d.gif)
-
 ***
 
 
