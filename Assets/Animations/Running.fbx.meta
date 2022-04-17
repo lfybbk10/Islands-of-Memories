@@ -83,7 +83,21 @@ ModelImporter:
           preInfinity: 3
           postInfinity: 3
           rotationOrder: 4
-      events: []
+      events:
+      - time: 0.35143772
+        functionName: StepSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 215876cde3ab4bb3ac913f9d3262a9d6, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9705198
+        functionName: StepSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 215876cde3ab4bb3ac913f9d3262a9d6, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

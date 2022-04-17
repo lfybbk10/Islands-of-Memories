@@ -27,6 +27,7 @@ public class Menu : MonoBehaviour
             () =>
             {
                 _mover.Move(_menu);
+                _UIinventory.SetActive(true);
             });
         _inventoryButton.onClick.AddListener(() =>
         {
