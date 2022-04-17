@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 using Random = System.Random;
 
@@ -7,8 +8,8 @@ namespace Characters.Hero.Scripts
     public class HeroAnimSounds : MonoBehaviour
     {
         private AudioSource _audioSource;
-        public AudioClip[] steps;
-        public AudioClip hit;
+        public AudioClip[] running;
+        public AudioClip[] walk;
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
@@ -16,12 +17,12 @@ namespace Characters.Hero.Scripts
 
         public void StepSound()
         {
-            _audioSource.PlayOneShot(steps[new Random().Next(0,steps.Length)]);
+            _audioSource.PlayOneShot(running[new Random().Next(0,running.Length)]);
         }
 
-        public void HitSound()
+        public void WalkSound()
         {
-            _audioSource.PlayOneShot(hit);
+            _audioSource.PlayOneShot(walk[new Random().Next(0,walk.Length)]);
         }
     }
 }
