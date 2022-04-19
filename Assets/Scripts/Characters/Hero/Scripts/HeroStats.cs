@@ -29,6 +29,5 @@ public static class HeroStats
         new Stat(0f, "Intelligence"),
         new Stat(0f, "Stamina"),
     };
-    
 
 }
