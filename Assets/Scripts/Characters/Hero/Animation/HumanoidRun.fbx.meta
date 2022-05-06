@@ -1935,10 +1935,24 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.47852707
+        functionName: StepFX
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 68b46dfe57cce3640adaab68062cbcb3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.9702196
         functionName: StepSound
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 215876cde3ab4bb3ac913f9d3262a9d6, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9742991
+        functionName: StepFX
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 68b46dfe57cce3640adaab68062cbcb3, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
