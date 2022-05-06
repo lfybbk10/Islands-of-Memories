@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Infrastructure;
 using UnityEngine;
 
@@ -11,14 +12,14 @@ public class HeroAnimFX : MonoBehaviour
     private GameObject _footStepFX;
 
     private bool isLeftFoot = true;
-    
-    public void StepFX()
+
+    private void StepFX()
     {
         _footStepFX = Instantiate(_footStepFXPrefab);
-        print(_footStepFX.transform.childCount);
         _footStepFX.transform.position = isLeftFoot ? _heroLeftFoot.transform.position : _heroRightFoot.transform.position;
         _footStepFX.GetComponent<ParticleSystem>().Play();
         isLeftFoot = !isLeftFoot;
+        Destroy(_footStepFX, _footStepFX.GetComponent<ParticleSystem>().main.duration);
     }
     
 }
