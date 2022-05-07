@@ -10,7 +10,6 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField] private MemoryCard originalCard;
     [SerializeField] private Sprite[] images;
-    [SerializeField] private TextMesh scoreOnLable;
 
     public const int gridRows = 2;
     public const int gridCols = 4;
@@ -21,7 +20,6 @@ public class SceneController : MonoBehaviour
     private MemoryCard _firstRevealed;
     private MemoryCard _secondRevealed;
 
-    private int _score = 0;
 
     public bool canReveal
     {
@@ -45,8 +43,7 @@ public class SceneController : MonoBehaviour
     {
         if (_firstRevealed.id == _secondRevealed.id)
         {
-            _score++;
-            scoreOnLable.text = $"Score : {_score}";
+            bool amogus = false;
         }
         else
         {
