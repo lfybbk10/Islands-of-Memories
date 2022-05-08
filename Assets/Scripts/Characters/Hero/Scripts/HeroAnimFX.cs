@@ -16,10 +16,10 @@ public class HeroAnimFX : MonoBehaviour
     private void StepFX()
     {
         _footStepFX = Instantiate(_footStepFXPrefab);
-        _footStepFX.transform.position = isLeftFoot ? _heroLeftFoot.transform.position : _heroRightFoot.transform.position;
+        _footStepFX.transform.position =
+            isLeftFoot ? _heroLeftFoot.transform.position : _heroRightFoot.transform.position;
         _footStepFX.GetComponent<ParticleSystem>().Play();
         isLeftFoot = !isLeftFoot;
         Destroy(_footStepFX, _footStepFX.GetComponent<ParticleSystem>().main.duration);
     }
-    
 }

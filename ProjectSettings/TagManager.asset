@@ -10,6 +10,7 @@ TagManager:
   - EquipPosition
   - DroppedPosition
   - Fire
+  - Missile
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Throw
   - PostProcessing
   - PP
-  - 
+  - Damageable
   - 
   - 
   - 

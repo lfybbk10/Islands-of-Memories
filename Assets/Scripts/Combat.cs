@@ -9,17 +9,19 @@ using Random = UnityEngine.Random;
 public class Combat : MonoBehaviour
 {
     [SerializeField] private Point _point;
-    [SerializeField] private LayerMask _trees;
+    [SerializeField] private LayerMask _damagableMask;
     private readonly Collider[] _colliders = new Collider[30];
-    
-    private void Damage() //Используется в аниматоре Axe Hit
+
+    private void Awake()
     {
-        var count = Physics.OverlapSphereNonAlloc(_point.Position, 2.5f, _colliders, _trees);
-        for (int i = 0; i < count; ++i)
-        {
-            var tree = _colliders[i].GetComponent<Tree>();
-            tree.transform.DOShakePosition(0.1f, 0.05f, 3);
-            tree.Damage(0.1f);
-        }
+        RuntimeContext.Instance.combat = this;
+    }
+    //Используется в аниматоре AxeHit
+    private void ApplyDamage()
+    {
+        var count = Physics.OverlapSphereNonAlloc(_point.Position, 2.5f, _colliders, _damagableMask);
+        if (count == 0)
+            return;
+        _colliders[0].GetComponent<IDamageable>().ApplyDamage(5f);
     }
 }

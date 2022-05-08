@@ -6,6 +6,12 @@ public class Equiper : MonoBehaviour
     [SerializeField] private Point _point;
     [SerializeField] private Spawner _spawner;
 
+
+    private void Awake()
+    {
+        RuntimeContext.Instance.equiper = this;
+    }
+    
     private Throw _current; 
     public bool IsEquip { get; private set; }
     public void Deprive(bool fictive)

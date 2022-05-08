@@ -30,6 +30,11 @@ public class Hero : MonoBehaviour
     private bool _isHit;
     private bool _isRoll;
 
+    private void Awake()
+    {
+        RuntimeContext.Instance.hero = this;
+    }
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -37,18 +42,14 @@ public class Hero : MonoBehaviour
         _capsule = GetComponent<CapsuleCollider>();
         _capsuleHeight = _capsule.height;
         _capsuleCenter = _capsule.center;
-
+        
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
                                  RigidbodyConstraints.FreezeRotationZ;
         _origGroundCheckDistance = m_GroundCheckDistance;
     }
-
-
+    
     public void Move(Vector3 move, bool crouch, bool jump, bool hit, bool roll)
     {
-        // convert the world relative moveInput vector into a local-relative
-        // turn amount and forward amount required to head in the desired
-        // direction.
         if (move.magnitude > 1f) move.Normalize();
         move = transform.InverseTransformDirection(move);
         CheckGroundStatus();
@@ -58,8 +59,6 @@ public class Hero : MonoBehaviour
         _isHit = hit;
         _isRoll = roll;
         ApplyExtraTurnRotation();
-
-        // control and velocity handling is different when grounded and airborne:
         if (_isGrounded)
         {
             HandleGroundedMovement(crouch, jump);
@@ -71,13 +70,11 @@ public class Hero : MonoBehaviour
 
         ScaleCapsuleForCrouching(crouch);
         PreventStandingInLowHeadroom();
-
-        // send input and other state parameters to the animator
         UpdateAnimator(move);
     }
 
 
-    void ScaleCapsuleForCrouching(bool crouch)
+    private void ScaleCapsuleForCrouching(bool crouch)
     {
         if (_isGrounded && crouch)
         {
@@ -103,9 +100,8 @@ public class Hero : MonoBehaviour
         }
     }
 
-    void PreventStandingInLowHeadroom()
+    private void PreventStandingInLowHeadroom()
     {
-        // prevent standing up in crouch-only zones
         if (!_crouching)
         {
             Ray crouchRay = new Ray(_rigidbody.position + Vector3.up * _capsule.radius * HALF, Vector3.up);
@@ -118,9 +114,8 @@ public class Hero : MonoBehaviour
         }
     }
 
-    void UpdateAnimator(Vector3 move)
+    private void UpdateAnimator(Vector3 move)
     {
-        // update the animator parameters
         _animator.SetFloat("Forward", _forwardAmount, 0.1f, Time.deltaTime);
         _animator.SetFloat("Turn", _turnAmount, 0.1f, Time.deltaTime);
         _animator.SetBool("Crouch", _crouching);
@@ -135,10 +130,6 @@ public class Hero : MonoBehaviour
             _animator.SetTrigger("Hit");
         if (_isRoll && !_animator.GetCurrentAnimatorStateInfo(0).IsName("Roll"))
             _animator.SetTrigger("Roll");
-
-        // calculate which leg is behind, so as to leave that leg trailing in the jump animation
-        // (This code is reliant on the specific run cycle offset in our animations,
-        // and assumes one leg passes the other at the normalized clip times of 0.0 and 0.5)
         float runCycle =
             Mathf.Repeat(
                 _animator.GetCurrentAnimatorStateInfo(0).normalizedTime + m_RunCycleLegOffset, 1);
@@ -147,16 +138,13 @@ public class Hero : MonoBehaviour
         {
             _animator.SetFloat("JumpLeg", jumpLeg);
         }
-
-        // the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
-        // which affects the movement speed because of the root motion.
+        
         if (_isGrounded && move.magnitude > 0)
         {
             _animator.speed = m_AnimSpeedMultiplier;
         }
         else
         {
-            // don't use that while airborne
             _animator.speed = 1;
         }
     }
@@ -164,7 +152,6 @@ public class Hero : MonoBehaviour
 
     void HandleAirborneMovement()
     {
-        // apply extra gravity from multiplier:
         Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
         _rigidbody.AddForce(extraGravityForce);
 
@@ -174,10 +161,8 @@ public class Hero : MonoBehaviour
 
     void HandleGroundedMovement(bool crouch, bool jump)
     {
-        // check whether conditions are right to allow a jump:
         if (jump && !crouch && _animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
         {
-            // jump!
             _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, m_JumpPower, _rigidbody.velocity.z);
             _isGrounded = false;
             _animator.applyRootMotion = false;
@@ -187,27 +172,21 @@ public class Hero : MonoBehaviour
 
     void ApplyExtraTurnRotation()
     {
-        // help the character turn faster (this is in addition to root rotation in the animation)
         float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, _forwardAmount);
         transform.Rotate(0, _turnAmount * turnSpeed * Time.deltaTime, 0);
     }
 
     public void OnAnimatorMove()
     {
-        // we implement this function to override the default root motion.
-        // this allows us to modify the positional speed before it's applied.
         if (_isGrounded && Time.deltaTime > 0)
         {
             Vector3 v = (_animator.deltaPosition * m_MoveSpeedMultiplier) / Time.deltaTime;
-
-            // we preserve the existing y part of the current velocity.
             v.y = _rigidbody.velocity.y;
             _rigidbody.velocity = v;
         }
     }
 
-
-    void CheckGroundStatus()
+    private void CheckGroundStatus()
     {
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo,
