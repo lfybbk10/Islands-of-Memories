@@ -16,4 +16,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: b8b7bc8226a4d52439b94e54f6c1ca20, type: 3}
   _maxQuantity: 1
   _type: 4
+  _fuckingType: 1
   _throw: {fileID: 9165765009174799358, guid: 5c4aa56a7217ae1449e6876aae440722, type: 3}
+  _damage: 10
+  _posionEffect: {fileID: 0}

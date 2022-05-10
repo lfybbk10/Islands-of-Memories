@@ -8,4 +8,5 @@ public interface IItem
     IItemState State { get; }
     IItem Clone(int amount);
     bool Equal(IItem item);
+    void Use();
 }

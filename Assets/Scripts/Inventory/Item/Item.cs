@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Item : IItem
 {
@@ -24,5 +25,10 @@ public class Item : IItem
     public bool Equal(IItem item)
     {
         return Info.Type == item.Info.Type;
+    }
+
+    public void Use()
+    {
+        RuntimeContext.Instance.health.Heal(Info.UsableEffect.Health); 
     }
 }

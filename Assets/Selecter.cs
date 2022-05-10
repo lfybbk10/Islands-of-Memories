@@ -26,20 +26,11 @@ public class Selecter : MonoBehaviour
             if (_current != _colliders[0])
                 _hint.transform.DOScale(Vector3.zero, 0.15f).OnComplete(() =>
                 {
-                    var pos = _colliders[0].transform.position;
-                    pos.y += 2f;
-                    _hint.gameObject.transform.position = pos;
-                    _hint.transform.DOScale(new Vector3(1, 1, 1) * .12f, 0.15f);
+                    _hint.transform.DOScale(new Vector3(1, 1, 1), 0.15f);
                 });
-            if (_current == null)
-            {
-                _hint.SetActive(true);
-                var pos = _colliders[0].transform.position;
-                pos.y += 2f;
-                _hint.gameObject.transform.position = pos;
-                _hint.transform.DOScale(new Vector3(1, 1, 1) * .12f, 0.15f);
-            }
             _current = _colliders[0];
+            _hint.SetActive(true);
+            _hint.transform.DOScale(new Vector3(1, 1, 1), 0.15f);
             if (Input.GetKeyDown(KeyCode.E))
             {
                 var throwable = _current.GetComponent<Throw>();
@@ -48,16 +39,23 @@ public class Selecter : MonoBehaviour
                 {
                     Destroy(throwable.Object);
                 });
-                _hint.transform.DOScale(Vector3.zero, 0.15f).OnComplete(() => { _hint.gameObject.SetActive(false); _current = null; });
+                if (count > 1)
+                {
+                    _hint.transform.DOScale(Vector3.zero, 0.15f).OnComplete(() =>
+                    {
+                        _hint.gameObject.SetActive(false);
+                    });
+                }
+                _current = null;
             }
         }
         else
         {
-            if (_current != null)
+            _hint.transform.DOScale(Vector3.zero, 0.15f).OnComplete(() =>
             {
-                _hint.transform.DOScale(Vector3.zero, 0.15f).OnComplete(() => { _hint.gameObject.SetActive(false); _current = null; });
-            }
-               
+                _hint.gameObject.SetActive(false);
+                _current = null;
+            });
         }
     }
 }

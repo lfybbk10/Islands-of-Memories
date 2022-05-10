@@ -22,6 +22,6 @@ public class Combat : MonoBehaviour
         var count = Physics.OverlapSphereNonAlloc(_point.Position, 2.5f, _colliders, _damagableMask);
         if (count == 0)
             return;
-        _colliders[0].GetComponent<IDamageable>().ApplyDamage(5f);
+        _colliders[0].GetComponent<IDamageable>().ApplyDamage(RuntimeContext.Instance.pickedSlot.Slot.Item.Info.Damage);
     }
 }

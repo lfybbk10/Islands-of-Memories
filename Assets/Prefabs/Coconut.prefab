@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5659467844438874113}
   - component: {fileID: 7376147803101487435}
   - component: {fileID: 6303048785539319263}
-  - component: {fileID: 6664463482283232689}
   m_Layer: 0
   m_Name: default
   m_TagString: Selectable
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6664463482283232689
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475749196342512442}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.2328378
-  m_Center: {x: 0, y: 0.9805919, z: 0.04251}
 --- !u!1 &5598428000690058211
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,8 +91,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5114484122769385817}
   - component: {fileID: -381339324237245326}
-  - component: {fileID: 6876137781348432649}
-  m_Layer: 0
+  - component: {fileID: 1694139179576270055}
+  - component: {fileID: 6502402541806862882}
+  m_Layer: 8
   m_Name: Coconut
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -144,7 +131,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6876137781348432649
+--- !u!65 &1694139179576270055
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598428000690058211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9697453, y: 1.3525687, z: 2.14343}
+  m_Center: {x: -0.19852957, y: 0.9083327, z: 0.17288485}
+--- !u!114 &6502402541806862882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5598428000690058211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3b3252ac9e849bdab032c7be4b65a08, type: 3}
+  m_Script: {fileID: 11500000, guid: ea06e623014e29549b3d64615998e8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemInfo: {fileID: 11400000, guid: 199639ff3ffab9b4cace2406c2826eb3, type: 2}
+  _info: {fileID: 11400000, guid: 199639ff3ffab9b4cace2406c2826eb3, type: 2}

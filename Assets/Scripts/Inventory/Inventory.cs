@@ -75,11 +75,27 @@ public class Inventory : IInventory
         {
             inventorySlot.Item.State.Amount -= amount;
             if (inventorySlot.Amount <= 0)
+            {
                 inventorySlot.Clear();
+                RuntimeContext.Instance.pickedSlot = null;
+            }
+                
             OnInventoryStateChanged();
         }
     }
-
+    
+    public void Use(IInventorySlot inventorySlot)
+    {
+        inventorySlot.Item.Use();
+        RemoveFromSlot(inventorySlot);
+        if (inventorySlot.IsEmpty)
+        {
+            RuntimeContext.Instance.pickedSlot = null;
+            RuntimeContext.Instance.equiper.Deprive();
+        }
+            
+    }
+    
     public void Remove(ItemType type, int amount = 1)
     {
         if (IsEmpty)

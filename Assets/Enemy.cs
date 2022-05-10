@@ -5,13 +5,16 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Ghost : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private Flicker _flicker;
     [SerializeField] private float _health;
     [SerializeField] private Animator _animator;
+    [SerializeField] private LayerMask _hero;
     private NavMeshAgent _agent;
-    public Action Dead;
+    private Collider[] _colliders = new Collider[50];
+    public Action Dead { get; set; }
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -21,17 +24,16 @@ public class Ghost : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        _agent.SetDestination(RuntimeContext.Instance.hero.transform.position);
-        _animator.SetFloat("Forward", 0.9f, 0.1f, Time.deltaTime);
+        // _agent.SetDestination(RuntimeContext.Instance.hero.transform.position);
+        // _animator.SetFloat("Forward", 0.9f, 0.1f, Time.deltaTime);
     }
-
 
     private void OnDead()
     {
         
     }
 
-    public float Health
+    public float Value
     {
         get => _health;
         set
@@ -41,9 +43,18 @@ public class Ghost : MonoBehaviour, IDamageable
         }
     }
 
+    public void TakeDamage()
+    {
+        var count = Physics.OverlapSphereNonAlloc(transform.position, 10f, _colliders,_hero);
+        if (count == 0)
+            return;
+        _colliders[0].GetComponent<IDamageable>().ApplyDamage(1);
+    }
+    
+    
     public void ApplyDamage(float value)
     {
-        Health -= value;
+        Value -= value;
         _flicker.Create();
     }
 

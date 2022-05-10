@@ -29,6 +29,7 @@ public class Hero : MonoBehaviour
     private bool _crouching;
     private bool _isHit;
     private bool _isRoll;
+    private Health _health;
 
     private void Awake()
     {
@@ -37,6 +38,8 @@ public class Hero : MonoBehaviour
 
     private void Start()
     {
+        _health = RuntimeContext.Instance.health;
+        _health.Dead += OnDead;
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _capsule = GetComponent<CapsuleCollider>();
@@ -47,7 +50,12 @@ public class Hero : MonoBehaviour
                                  RigidbodyConstraints.FreezeRotationZ;
         _origGroundCheckDistance = m_GroundCheckDistance;
     }
-    
+
+    private void OnDead()
+    {
+        //TODO сдеать смерть))
+    }
+
     public void Move(Vector3 move, bool crouch, bool jump, bool hit, bool roll)
     {
         if (move.magnitude > 1f) move.Normalize();

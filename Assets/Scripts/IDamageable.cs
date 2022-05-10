@@ -2,7 +2,8 @@ using System;
 
 public interface IDamageable
 { 
-    public float Health { get; set; }
+    public Action Dead { get; set; }
+    public float Value { get; set; }
 
     void ApplyDamage(float value);
 }

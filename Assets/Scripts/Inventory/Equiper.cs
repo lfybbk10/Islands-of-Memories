@@ -28,7 +28,10 @@ public class Equiper : MonoBehaviour
     public void Equip(IItem item)
     {
         Deprive();
+        print(item);
         _current = _spawner.Spawn(item, _point.Position, _point.transform);
+        if (_current == null)
+            return;
         _current.Rigidbody.isKinematic = true;
         _current.BoxCollider.enabled = false;
         IsEquip = true;

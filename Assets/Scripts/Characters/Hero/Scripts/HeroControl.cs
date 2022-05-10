@@ -50,6 +50,14 @@ public class HeroControl : MonoBehaviour
             return;
         var axis = Game.InputService.Axis;
         var crouch = Input.GetKey(KeyCode.LeftControl);
+        var pickedSlot = RuntimeContext.Instance.pickedSlot;
+        if (_hit && pickedSlot != null && pickedSlot.Slot.Item.Info.FuckingType == FuckingType.Usable)
+            RuntimeContext.Instance.inventory.Use(pickedSlot.Slot);
+        pickedSlot = RuntimeContext.Instance.pickedSlot;
+        if (pickedSlot == null)
+            _hit = false;
+        if (pickedSlot != null && pickedSlot.Slot.Item.Info.FuckingType != FuckingType.Damaging)
+            _hit = false;
         if (_camera != null)
         {
             _camForward = _camera.forward;

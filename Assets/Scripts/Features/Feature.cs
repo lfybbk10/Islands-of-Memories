@@ -15,7 +15,7 @@ public abstract class Feature
             Changed?.Invoke(_value);
         }
     }
-
+    
     public void IncreaseValue(int value)
     {
         Value += value;

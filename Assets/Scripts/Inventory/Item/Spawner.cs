@@ -15,6 +15,8 @@ public class Spawner : MonoBehaviour
 
     public Throw Spawn(IItem item, Vector3 position, Transform parent)
     {
+        if (item.Info.Throw == null)
+            return null;
         var spawned = Instantiate(item.Info.Throw, parent);
         var scale = spawned.transform.localScale;
         spawned.transform.localScale = new Vector3(0, 0, 0);

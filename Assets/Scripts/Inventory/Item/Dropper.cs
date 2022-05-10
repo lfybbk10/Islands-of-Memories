@@ -7,6 +7,11 @@ public class Dropper : MonoBehaviour
     [SerializeField] private Spawner _spawner;
     [SerializeField] private Equiper _equiper;
 
+    private void Awake()
+    {
+        RuntimeContext.Instance.dropper = this;
+    }
+    
     public void Drop(Inventory inventory, UIInventorySlot uiSlot)
     {
         if (_equiper.IsEquip && uiSlot.Slot.Amount == 1)

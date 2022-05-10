@@ -10,9 +10,9 @@ public class UIInventory : MonoBehaviour
 {
     [SerializeField] private ItemInfo _info;
     [SerializeField] private ItemInfo _info2;
-    [SerializeField] private Dropper _dropper;
     [SerializeField] private UIInventorySlot[] _uiSlots;
-    [SerializeField] private Equiper _equiper;
+    private Equiper _equiper;
+    private Dropper _dropper;
     [SerializeField] private UIInventorySlot _slot;
     private Inventory _inventory;
     private IList<UIInventoryFastSlot> _fast;
@@ -28,6 +28,12 @@ public class UIInventory : MonoBehaviour
         Setup();
     }
 
+    private void Start()
+    {
+        _equiper = RuntimeContext.Instance.equiper;
+        _dropper = RuntimeContext.Instance.dropper;
+    }
+    
     public Inventory GetInventory() => _inventory;
 
     private void OnTransited(IInventorySlot slot1, IInventorySlot slot2)
@@ -79,13 +85,15 @@ public class UIInventory : MonoBehaviour
                     if (!_selected.Slot.IsEmpty)
                         _equiper.Deprive();
                     _selected = null;
+                    RuntimeContext.Instance.pickedSlot = _selected;
                     return;
                 }
 
                 if (_selected != null)
                     _selected.ToggleSelect();
                 slot.ToggleSelect();
-                _selected = slot;
+                _selected = slot; 
+                RuntimeContext.Instance.pickedSlot = _selected;
                 if (!_selected.Slot.IsEmpty)
                     _equiper.Equip(_selected.Slot.Item);
             }
@@ -95,6 +103,7 @@ public class UIInventory : MonoBehaviour
     private void Setup()
     {
         _inventory = new Inventory(_uiSlots.Length, InventoryChanged);
+        RuntimeContext.Instance.inventory = _inventory;
         var allSlots = _inventory.GetSlots();
         for (int i = 0; i < _uiSlots.Length; ++i)
         {
