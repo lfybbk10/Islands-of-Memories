@@ -1,11 +1,5 @@
 ![image](https://user-images.githubusercontent.com/76452124/163465151-7c25a900-1bf6-4a05-88b8-a50a396809b8.png)
 
-***
-
-![image](https://user-images.githubusercontent.com/76452124/163466665-566ee54f-08d5-4f20-a4ca-0cf78a9b09b1.png)
-
----
-
 
 
 ## **Кадры из игры:**
